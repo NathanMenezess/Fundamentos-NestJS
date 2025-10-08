@@ -7,7 +7,7 @@ import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class USerService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
 
   async create(data: CreateUserDTO) {
     const salt = await bcrypt.genSalt();
@@ -77,9 +77,7 @@ export class USerService {
 
     if (password) {
       const salt = await bcrypt.genSalt();
-
       data.password = await bcrypt.hash(data.password, salt);
-      data.password = password;
     }
 
     if (role) {
